@@ -4,13 +4,15 @@
   "scripts": {
     "ex-pure-js": "http-server examples/pure-js/",
     "ex-angular": "http-server examples/angular/",
-    "ex-react": "http-server examples/react/"
+    "ex-react": "http-server examples/react/",
+    "present": "http-server ."
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:willyg302/angular-vs-react"
   },
   "author": "William Gaul",
+  "dependencies": {},
   "devDependencies": {
     "http-server": "~0.7.2"
   }
