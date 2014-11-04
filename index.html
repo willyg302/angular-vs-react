@@ -32,104 +32,170 @@
 			</section>
 
 			<section>
-				<h2>Heads Up</h2>
-				<p>
-					reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-					support for CSS 3D transforms to see it in its full glory.
-				</p>
-
-				<aside class="notes">
-					Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-				</aside>
+				<h2>The Web: Then</h2>
+				<iframe width="960px" height="520px" src="http://www.dokimos.org/ajff/indexpage.html"></iframe>
 			</section>
 
-			<!-- Example of nested vertical slides -->
 			<section>
-				<section>
-					<h2>Vertical Slides</h2>
-					<p>
-						Slides can be nested inside of other slides,
-						try pressing <a href="#" class="navigate-down">down</a>.
-					</p>
-					<a href="#" class="image navigate-down">
-						<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-					</a>
-				</section>
-				<section>
-					<h2>Basement Level 1</h2>
-					<p>Press down or up to navigate.</p>
-				</section>
-				<section>
-					<h2>Basement Level 2</h2>
-					<p>Cornify</p>
-					<a class="test" href="http://cornify.com">
-						<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-					</a>
-				</section>
-				<section>
-					<h2>Basement Level 3</h2>
-					<p>That's it, time to go back up.</p>
-					<a href="#/2" class="image">
-						<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-					</a>
-				</section>
+				<h2>The Web: Now</h2>
+				<iframe width="960px" height="520px" src="http://oos.moxiecode.com/js_webgl/autumn/"></iframe>
 			</section>
 
-			<section data-markdown>
-				<script type="text/template">
-					## Markdown support
+			<section>
+				<h2>The Web: Now</h2>
+				<iframe width="960px" height="520px" src="http://nebez.github.io/floppybird/"></iframe>
+			</section>
 
-					For those of you who like that sort of thing. Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
+			<section>
+				<h2>
+					<span id="greeting">Hello</span>
+					<span id="subject">world!</span>
+				</h2>
+				<select id="greetingInput" style="font-size: 48px;">
+					<option value="Hello">Hello</option>
+					<option value="So long">So long</option>
+				</select>
+				<input id="subjectInput" type="text" value="world!" style="font-size: 48px;">
+				<script type="text/javascript">
+					var g = document.getElementById('greetingInput');
+					var s = document.getElementById('subjectInput');
 
-					```
-					<section data-markdown>
-					  ## Markdown support
+					g.onchange = function() {
+						document.getElementById('greeting').innerHTML = this.value;
+					};
 
-					  For those of you who like that sort of thing.
-					  Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-					</section>
-					```
+					s.onkeypress = s.onkeyup = function() {
+						document.getElementById('subject').innerHTML = this.value;
+					};
 				</script>
 			</section>
 
 			<section>
-				<h2>Global State</h2>
-				<p>
-					Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-					will be added as a class to the document element when the slide is open. This lets you
-					apply broader style changes, like switching the background.
-				</p>
-			</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Pure JavaScript
 
-			<section data-state="customevent">
-				<h2>Custom Events</h2>
-				<p>
-					Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-				</p>
-				<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-Reveal.addEventListener('customevent', function() {
-	console.log('"customevent" has fired');
-});
-				</code></pre>
+						`index.html`
+
+						```html
+						<h1>
+							<span id="greeting">Hello</span>
+							<span id="subject">world!</span>
+						</h1>
+						<select id="greetingInput">
+							<option value="Hello">Hello</option>
+							<option value="So long">So long</option>
+						</select>
+						<input id="subjectInput" type="text" value="world!">
+						```
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Pure JavaScript
+
+						`app.js`
+
+						```js
+						var g = document.getElementById('greetingInput');
+						var s = document.getElementById('subjectInput');
+
+						g.onchange = function() {
+							document.getElementById('greeting').innerHTML = this.value;
+						};
+
+						s.onkeypress = s.onkeyup = function() {
+							document.getElementById('subject').innerHTML = this.value;
+						};
+						```
+					</script>
+				</section>
 			</section>
 
 			<section>
-				<section data-background="#007777">
-					<h2>Slide Backgrounds</h2>
-					<p>
-						Set <code>data-background="#007777"</code> on a slide to change the full page background to the given color. All CSS color formats are supported.
-					</p>
-					<a href="#" class="image navigate-down">
-						<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-					</a>
+				<section data-markdown>
+					<script type="text/template">
+						## Angular
+
+						`index.html`
+
+						```html
+						<body ng-app="App">
+							<div ng-controller="Example">
+								<h1>{{greeting}} {{subject}}</h1>
+								<select ng-model="greeting"
+								        ng-options="g for g in greetings">
+								</select>
+								<input type="text" ng-model="subject">
+							</div>
+						</body>
+						```
+					</script>
 				</section>
-				<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-					<h2>Image Backgrounds</h2>
-					<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
+				<section data-markdown>
+					<script type="text/template">
+						## Angular
+
+						`app.js`
+
+						```js
+						angular.module('App', [])
+						       .controller('Example', ['$scope', function($scope) {
+							$scope.greetings = ['Hello', 'So long'];
+							$scope.greeting = $scope.greetings[0];
+							$scope.subject = 'world!';
+						}]);
+						```
+					</script>
 				</section>
-				<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" data-background-repeat="repeat" data-background-size="100px">
-					<h2>Repeated Image Backgrounds</h2>
-					<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
+			</section>
+
+			<section>
+				<section data-markdown>
+					<script type="text/template">
+						## React
+
+						`app.js`
+
+						```js
+						var App = React.createClass({
+							getInitialState: function() {
+								return { greeting: 'Hello', subject: 'world!' };
+							},
+							render: function() {
+								return ( /* Partial here */ );
+							},
+							onGreetingChange: function(event) {
+								this.setState({ greeting: event.target.value });
+							},
+							onSubjectChange: function(event) {
+								this.setState({ subject: event.target.value });
+							}
+						});
+
+						React.renderComponent(<App/>, document.body);
+						```
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## React
+
+						Partial
+
+						```html
+						<div>
+							<h1>{this.state.greeting} {this.state.subject}</h1>
+							<select value={this.state.greeting}
+							        onChange={this.onGreetingChange}>
+								<option value="Hello">Hello</option>
+								<option value="So long">So long</option>
+							</select>
+							<input type="text" value={this.state.subject}
+							       onChange={this.onSubjectChange} />
+						</div>
+						```
+					</script>
 				</section>
 			</section>
 
@@ -143,32 +209,6 @@ Reveal.addEventListener('customevent', function() {
 					&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
 					reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
 				</blockquote>
-			</section>
-
-			<section>
-				<h2>Pretty Code</h2>
-				<pre><code data-trim contenteditable>
-function linkify(selector) {
-	if (supports3DTransforms) {
-		var nodes = document.querySelectorAll(selector);
-		for (var i = 0, len = nodes.length; i &lt; len; i++) {
-			var node = nodes[i];
-			if (!node.className) {
-				node.className += ' roll';
-			}
-		}
-	}
-}
-				</code></pre>
-				<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-			</section>
-
-			<section>
-				<h2>Intergalactic Interconnections</h2>
-				<p>
-					You can link between slides internally,
-					<a href="#/2/3">like this</a>.
-				</p>
 			</section>
 
 			<section>
@@ -209,25 +249,8 @@ function linkify(selector) {
 			</section>
 
 			<section>
-				<h2>Export to PDF</h2>
-				<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
-				<iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-				<script>
-					document.getElementById('slideshare').attributeName = 'allowfullscreen';
-				</script>
-			</section>
-
-			<section>
-				<h2>Stellar Links</h2>
-				<ul>
-					<li><a href="http://slid.es">Try the online editor</a></li>
-					<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-					<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-				</ul>
-			</section>
-
-			<section>
-				<h1>Thanks for watching!</h1>
+				<h1>The End</h1>
+				<h3>Thank You!</h3>
 			</section>
 		</div>
 	</div>
