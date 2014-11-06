@@ -37,12 +37,45 @@
 
 			<section>
 				<h2>The Web: Now</h2>
-				<iframe width="960px" height="520px" src="http://oos.moxiecode.com/js_webgl/autumn/"></iframe>
+				<iframe id="autumn" width="960px" height="520px" src="http://oos.moxiecode.com/js_webgl/autumn/"></iframe>
+				<script type="text/javascript">
+					function killAutumn() {
+						document.getElementById('autumn').src = 'http://www.memecreator.org/static/images/templates/751154.jpg';
+					}
+				</script>
+				<button onclick="killAutumn()" style="font-size: 24px;">Panda-ify</button>
 			</section>
 
 			<section>
 				<h2>The Web: Now</h2>
 				<iframe width="960px" height="520px" src="http://nebez.github.io/floppybird/"></iframe>
+			</section>
+
+			<section data-markdown>
+				<script type="text/template">
+					## What Changed?
+
+					- Static &rarr; Dynamic <!-- .element: class="fragment" -->
+					- Pages and Links &rarr; Single-Page Applications (SPAs) <!-- .element: class="fragment" -->
+					- Desktop &rarr; Desktop, Mobile, Tablet, Watch... <!-- .element: class="fragment" -->
+					- Web Presence &rarr; Integration <!-- .element: class="fragment" -->
+				</script>
+			</section>
+
+			<section data-markdown>
+				<script type="text/template">
+					## Problems
+
+					- Websites and web applications are getting more complex <!-- .element: class="fragment" -->
+					- A lot of code is repeated <!-- .element: class="fragment" -->
+					- Application logic is increasingly hard to reason about <!-- .element: class="fragment" -->
+					- No standard way of doing things <!-- .element: class="fragment" -->
+				</script>
+			</section>
+
+			<section>
+				<h2>Web Frameworks</h2>
+				<img src="https://s3.amazonaws.com/giphymedia/media/MOWPkhRAUbR7i/giphy.gif">
 			</section>
 
 			<section>
@@ -198,54 +231,7 @@
 				</section>
 			</section>
 
-			<section>
-				<h2>Clever Quotes</h2>
-				<p>
-					These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-					&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-				</p>
-				<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-					&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-					reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-				</blockquote>
-			</section>
-
-			<section>
-				<section id="fragments">
-					<h2>Fragmented Views</h2>
-					<p>Hit the next arrow...</p>
-					<p class="fragment">... to step through ...</p>
-					<ol>
-						<li class="fragment"><code>any type</code></li>
-						<li class="fragment"><em>of view</em></li>
-						<li class="fragment"><strong>fragments</strong></li>
-					</ol>
-
-					<aside class="notes">
-						This slide has fragments which are also stepped through in the notes window.
-					</aside>
-				</section>
-				<section>
-					<h2>Fragment Styles</h2>
-					<p>There's a few styles of fragments, like:</p>
-					<p class="fragment grow">grow</p>
-					<p class="fragment shrink">shrink</p>
-					<p class="fragment roll-in">roll-in</p>
-					<p class="fragment fade-out">fade-out</p>
-					<p class="fragment highlight-red">highlight-red</p>
-					<p class="fragment highlight-green">highlight-green</p>
-					<p class="fragment highlight-blue">highlight-blue</p>
-					<p class="fragment current-visible">current-visible</p>
-					<p class="fragment highlight-current-blue">highlight-current-blue</p>
-				</section>
-			</section>
-
-			<section>
-				<h2>Spectacular image!</h2>
-				<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
-					<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
-				</a>
-			</section>
+			<!--http://www.slideshare.net/prasidpathak/copy-of-frontend-tech-talk-deck-july-2014-->
 
 			<section>
 				<h1>The End</h1>
