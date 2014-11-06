@@ -2,5 +2,6 @@ node_modules/
 .DS_Store
 paper/*
 !Gaul William Angular vs React v1.tex
+!settings.tex
 !angular-vs-react.bib
 !IEEEtran.bst

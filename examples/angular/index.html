@@ -8,7 +8,9 @@
 <body ng-app="App">
 	<div ng-controller="Example">
 		<h1>{{greeting}} {{subject}}</h1>
-		<select ng-model="greeting" ng-options="g for g in greetings"></select>
+		<select ng-model="greeting"
+		        ng-options="g for g in greetings">
+		</select>
 		<input type="text" ng-model="subject">
 	</div>
 </body>

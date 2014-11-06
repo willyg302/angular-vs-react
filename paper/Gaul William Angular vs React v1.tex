@@ -12,22 +12,14 @@
 	\usetikzlibrary{positioning}
 \usepackage{sidecap}
 
+% For code samples
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{color}
 
-\def\UrlBreaks{\do-\do_}
-\titlespacing*{\section}{0pt}{0pt}{0pt}
-\titlespacing*{\subsection}{0pt}{0pt}{0pt}
-\doublespacing
-\makeatletter
 
-% Customize title
-\renewcommand{\maketitle}{
-	\begin{flushright}
-		\@author\\\@date
-	\end{flushright}
-	\begin{center}
-		{\LARGE\@title}
-	\end{center}
-}
+% Import settings, which are stored in a separate file for convenience
+\input{settings.tex}
 
 % Set title
 \title{\textbf{Angular vs. React}}
@@ -42,6 +34,9 @@ We are tasked with determining, non-destructively, whether an alien object is an
 
 
 
+
+
+Listing \ref{lst:pureJS}
 
 
 
@@ -168,6 +163,30 @@ An interesting consequence of this test is that in order for an object to be con
 \section*{Future Work}
 
 We have here presented a set of tests that we are reasonably confident will determine whether an alien object is an artifact and/or intelligent, but there is a lot of room for improvement. Future iterations of these tests may adopt more rigorous definitions or incorporate empirical feedback to increase their efficacy.
+
+\newpage
+
+\appendix
+\section{Code Listings}
+
+\subsection*{Pure JavaScript}
+
+\lstinputlisting[style=html,caption={index.html},label={lst:pureHTML}]{../examples/pure-js/index.html}
+\lstinputlisting[style=js,caption={app.js},label={lst:pureJS}]{../examples/pure-js/app.js}
+
+\newpage
+
+\subsection*{Angular}
+
+\lstinputlisting[style=html,caption={index.html},label={lst:angularHTML}]{../examples/angular/index.html}
+\lstinputlisting[style=js,caption={app.js},label={lst:angularJS}]{../examples/angular/app.js}
+
+\newpage
+
+\subsection*{React}
+
+\lstinputlisting[style=html,caption={index.html},label={lst:reactHTML}]{../examples/react/index.html}
+\lstinputlisting[style=js,caption={app.js},label={lst:reactJS}]{../examples/react/app.js}
 
 \newpage
 
