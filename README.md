@@ -1,6 +1,6 @@
 # Angular vs. React
 
-This repo contains materials for my Systems Design course project, including the final presentation slides and example code.
+This repo contains materials for my Systems Design course project, including the final presentation slides, final paper, and example code.
 
 ## Presenting
 
@@ -8,6 +8,18 @@ Call `npm run-script present` to start the presentation locally. A few tips:
 
 - Hit `esc` to enter the slide overview
 - Hit `b` to pause/dim the presentation if necessary
+
+## Paper
+
+The final paper lives in the `paper/` directory. Run the following to build it:
+
+```bash
+pdflatex Gaul\ William\ Angular\ vs\ React\ v1.tex
+bibtex Gaul\ William\ Angular\ vs\ React\ v1
+pdflatex Gaul\ William\ Angular\ vs\ React\ v1.tex  # Twice
+```
+
+Naturally, you will need to run `bibtex` every time your bibliography changes, and `pdflatex` twice to get the updated references right.
 
 ## Examples
 
