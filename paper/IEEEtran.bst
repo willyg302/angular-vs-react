@@ -1,9 +1,19 @@
 %%
-%% IEEEtran.bst
-%% BibTeX Bibliography Style file for IEEE Journals and Conferences (unsorted)
-%% Version 1.13 (2008/09/30)
+%% IEEEannot.bst
+%% BibTeX Bibliography Style file
+%% Sorting version of IEEEtran.bst
+%% *** Not for use with work to be submitted to the IEEE ***
+%% Version 1.11 (2003/04/02)
 %% 
-%% Copyright (c) 2003-2008 Michael Shell
+%% Copyright (c) 2003 Michael Shell
+%%
+%% Modified by Titus Barik (titus@barik.net) to support annotated
+%% bibliographies in IEEE citation format. Renamed to IEEEannot.bst. 
+%% The latest version of IEEEannot can always be downloaded at:
+%%
+%%    http://www.barik.net/sw/ieee/
+%%
+%% This version of IEEEannot is: 2004-15-02
 %% 
 %% Original starting code base and algorithms obtained from the output of
 %% Patrick W. Daly's makebst package as well as from prior versions of
@@ -12,86 +22,47 @@
 %% 1. Howard Trickey and Oren Patashnik's ieeetr.bst  (1985/1988)
 %% 2. Silvano Balemi and Richard H. Roy's IEEEbib.bst (1993)
 %% 
-%% Support sites:
-%% http://www.michaelshell.org/tex/ieeetran/
-%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
-%% and/or
-%% http://www.ieee.org/
+%% Added sorting code is from plain.bst.
+%% 
+%% See:
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/
+%% for latest version and current contact information.
 %% 
 %% For use with BibTeX version 0.99a or later
 %%
 %% This is a numerical citation style.
 %% 
-%%*************************************************************************
+%%**********************************************************************
 %% Legal Notice:
 %% This code is offered as-is without any warranty either expressed or
 %% implied; without even the implied warranty of MERCHANTABILITY or
-%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% FITNESS FOR A PARTICULAR PURPOSE!
 %% User assumes all risk.
 %% In no event shall IEEE or any contributor to this code be liable for
 %% any damages or losses, including, but not limited to, incidental,
 %% consequential, or any other damages, resulting from the use or misuse
 %% of any information contained here.
 %%
+%% This code is distributed under the Perl Artistic License 
+%% ( http://language.perl.com/misc/Artistic.html ) 
+%% and may be freely used, distributed and modified - subject to the
+%% constraints therein.
+%% Retain all contribution notices, credits and disclaimers.
+%% 
 %% All comments are the opinions of their respective authors and are not
 %% necessarily endorsed by the IEEE.
-%%
-%% This work is distributed under the LaTeX Project Public License (LPPL)
-%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
-%% distributed and modified. A copy of the LPPL, version 1.3, is included
-%% in the base LaTeX documentation of all distributions of LaTeX released
-%% 2003/12/01 or later.
-%% Retain all contribution notices and credits.
-%% ** Modified files should be clearly indicated as such, including  **
-%% ** renaming them and changing author support contact information. **
-%%
-%% File list of work: IEEEabrv.bib, IEEEfull.bib, IEEEexample.bib,
-%%                    IEEEtran.bst, IEEEtranS.bst, IEEEtranSA.bst,
-%%                    IEEEtranN.bst, IEEEtranSN.bst, IEEEtran_bst_HOWTO.pdf
-%%*************************************************************************
+%%**********************************************************************
 %
 %
 % Changelog:
-%
-% 1.00 (2002/08/13) Initial release
-%
-% 1.10 (2002/09/27)
-%  1. Corrected minor bug for improperly formed warning message when a
-%     book was not given a title. Thanks to Ming Kin Lai for reporting this.
-%  2. Added support for CTLname_format_string and CTLname_latex_cmd fields
-%     in the BST control entry type.
+% 
+% 1.10 (2002/09/27) Initial release
 %
 % 1.11 (2003/04/02)
 %  1. Fixed bug with URLs containing underscores when using url.sty. Thanks
 %     to Ming Kin Lai for reporting this.
-%
-% 1.12 (2007/01/11)
-%  1. Fixed bug with unwanted comma before "et al." when an entry contained
-%     more than two author names. Thanks to Pallav Gupta for reporting this.
-%  2. Fixed bug with anomalous closing quote in tech reports that have a
-%     type, but without a number or address. Thanks to Mehrdad Mirreza for
-%     reporting this.
-%  3. Use braces in \providecommand in begin.bib to better support
-%     latex2html. TeX style length assignments OK with recent versions
-%     of latex2html - 1.71 (2002/2/1) or later is strongly recommended.
-%     Use of the language field still causes trouble with latex2html.
-%     Thanks to Federico Beffa for reporting this.
-%  4. Added IEEEtran.bst ID and version comment string to .bbl output.
-%  5. Provide a \BIBdecl hook that allows the user to execute commands
-%     just prior to the first entry.
-%  6. Use default urlstyle (is using url.sty) of "same" rather than rm to
-%     better work with a wider variety of bibliography styles.
-%  7. Changed month abbreviations from Sept., July and June to Sep., Jul.,
-%     and Jun., respectively, as IEEE now does. Thanks to Moritz Borgmann
-%     for reporting this.
-%  8. Control entry types should not be considered when calculating longest
-%     label width.
-%  9. Added alias www for electronic/online.
-% 10. Added CTLname_url_prefix control entry type.
-%
-% 1.13 (2008/09/30)
-%  1. Fixed bug with edition number to ordinal conversion. Thanks to
-%     Michael Roland for reporting this and correcting the algorithm.
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,11 +75,10 @@
 % NOTE: The recommended LaTeX command to invoke a control entry type is:
 % 
 %\makeatletter
-%\def\bstctlcite{\@ifnextchar[{\@bstctlcite}{\@bstctlcite[@auxout]}}
-%\def\@bstctlcite[#1]#2{\@bsphack
-%  \@for\@citeb:=#2\do{%
+%\def\bstctlcite#1{\@bsphack
+%  \@for\@citeb:=#1\do{%
 %    \edef\@citeb{\expandafter\@firstofone\@citeb}%
-%    \if@filesw\immediate\write\csname #1\endcsname{\string\citation{\@citeb}}\fi}%
+%    \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi}%
 %  \@esphack}
 %\makeatother
 %
@@ -175,10 +145,6 @@ FUNCTION {default.name.format.string}{ "{f.~}{vv~}{ll}{, jj}" }
 FUNCTION {default.name.latex.cmd}{ "" }
 
 
-% The default URL prefix.
-FUNCTION {default.name.url.prefix}{ "[Online]. Available:" }
-
-
 % Other controls that cannot be accessed via IEEEtranBSTCTL entry type.
 
 % #0 turns off the terminal startup banner/completed message so as to
@@ -193,18 +159,20 @@ FUNCTION {is.print.banners.to.terminal} { #1 }
 %% FILE VERSION AND BANNER %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-FUNCTION{bst.file.version} { "1.13" }
-FUNCTION{bst.file.date} { "2008/09/30" }
-FUNCTION{bst.file.website} { "http://www.michaelshell.org/tex/ieeetran/bibtex/" }
+FUNCTION{bst.file.version} { "1.11" }
+FUNCTION{bst.file.date} { "2003/04/02" }
+FUNCTION{bst.file.website} { "http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/" }
 
 FUNCTION {banner.message}
 { is.print.banners.to.terminal
-     { "-- IEEEtran.bst version" " " * bst.file.version *
+     { "-- IEEEtranS.bst version" " " * bst.file.version *
        " (" * bst.file.date * ") " * "by Michael Shell." *
        top$
        "-- " bst.file.website *
        top$
        "-- See the " quote$ * "IEEEtran_bst_HOWTO.pdf" * quote$ * " manual for usage information." *
+       top$
+       "** Sorting version - not for use with work to be submitted to the IEEE."
        top$
      }
      { skip$ }
@@ -251,6 +219,7 @@ FUNCTION {bbl.standard}{ "Std." }
 FUNCTION {bbl.techrep}{ "Tech. Rep." }
 FUNCTION {bbl.mthesis}{ "Master's thesis" }
 FUNCTION {bbl.phdthesis}{ "Ph.D. dissertation" }
+FUNCTION {bbl.urlprefix}{ "[Online]. Available:" }
 FUNCTION {bbl.st}{ "st" }
 FUNCTION {bbl.nd}{ "nd" }
 FUNCTION {bbl.rd}{ "rd" }
@@ -279,10 +248,10 @@ MACRO {feb} {"Feb."}
 MACRO {mar} {"Mar."}
 MACRO {apr} {"Apr."}
 MACRO {may} {"May"}
-MACRO {jun} {"Jun."}
-MACRO {jul} {"Jul."}
+MACRO {jun} {"June"}
+MACRO {jul} {"July"}
 MACRO {aug} {"Aug."}
-MACRO {sep} {"Sep."}
+MACRO {sep} {"Sept."}
 MACRO {oct} {"Oct."}
 MACRO {nov} {"Nov."}
 MACRO {dec} {"Dec."}
@@ -294,7 +263,9 @@ MACRO {dec} {"Dec."}
 %%%%%%%%%%%%%%%%%%
 
 ENTRY
-  { address
+  { 
+    address
+  annote
     assignee
     author
     booktitle
@@ -337,7 +308,6 @@ ENTRY
     CTLdash_repeated_names
     CTLname_format_string
     CTLname_latex_cmd
-    CTLname_url_prefix
   }
   {}
   { label }
@@ -382,8 +352,7 @@ STRINGS { bibinfo
           t
           ALTinterwordstretchfactor
           name.format.string
-          name.latex.cmd
-          name.url.prefix}
+          name.latex.cmd}
 
 
 
@@ -403,7 +372,6 @@ FUNCTION {initialize.controls}
   default.ALTinterwordstretchfactor 'ALTinterwordstretchfactor :=
   default.name.format.string 'name.format.string :=
   default.name.latex.cmd 'name.latex.cmd :=
-  default.name.url.prefix 'name.url.prefix :=
 }
 
 
@@ -478,6 +446,20 @@ FUNCTION {initialize.controls}
 % For instance, it is easy to add a "space.tie" attribute value if the
 % bibliography rules mandate that two items have to be joined with an
 % unbreakable space. 
+
+% Titus Barik Annotation Addition
+
+% annotation addition
+FUNCTION {format.annotate}
+{ annote empty$
+  { "" }
+  { " \begin{quotation}\noindent "
+    annote
+    * " \end{quotation} " *
+  }
+  if$
+}
+
 
 FUNCTION {initialize.status.constants}
 { #0 'punct.no :=
@@ -728,6 +710,7 @@ FUNCTION {is.multiple.pages}
       if$
     }
   while$
+ 
   multiresult
 }
 
@@ -937,24 +920,20 @@ FUNCTION {name.or.dash}
 % Converts the number string on the top of the stack to
 % "numerical ordinal form" (e.g., "7" to "7th"). There is
 % no artificial limit to the upper bound of the numbers as the
-% two least significant digits determine the ordinal form.
+% least significant digit always determines the ordinal form.
 FUNCTION {num.to.ordinal}
-{ duplicate$ #-2 #1 substring$ "1" =
-      { bbl.th * }
-      { duplicate$ #-1 #1 substring$ "1" =
-          { bbl.st * }
-          { duplicate$ #-1 #1 substring$ "2" =
-              { bbl.nd * }
-              { duplicate$ #-1 #1 substring$ "3" =
-                  { bbl.rd * }
-                  { bbl.th * }
-                if$
-              }
-            if$
-          }
-        if$
-      }
-    if$
+{ duplicate$ #-1 #1 substring$ "1" =
+     { bbl.st * }
+     { duplicate$ #-1 #1 substring$ "2" =
+         { bbl.nd * }
+         { duplicate$ #-1 #1 substring$ "3" =
+             { bbl.rd * }
+             { bbl.th * }
+           if$
+         }
+       if$
+     }
+   if$
 }
 
 % If the string on the top of the stack begins with a number,
@@ -1069,35 +1048,33 @@ FUNCTION {start.entry}
 % code sequences are those that control the alternate interword spacing and
 % foreign language hyphenation patterns. The heavy use of \providecommand
 % gives users a way to override the defaults. Special thanks to Javier Bezos,
-% Johannes Braams, Robin Fairbairns, Heiko Oberdiek, Donald Arseneau and all
+% Johannes Braams, Robin Fairburns, Heiko Oberdiek, Donald Arseneau and all
 % the other gurus on comp.text.tex for their help and advice on the topic of
 % \selectlanguage, Babel and BibTeX.
 FUNCTION {begin.bib}
-{ "% Generated by IEEEtran.bst, version: " bst.file.version * " (" * bst.file.date * ")" *
-  write$ newline$
-  preamble$ empty$ 'skip$
+{ preamble$ empty$ 'skip$
     { preamble$ write$ newline$ }
   if$
   "\begin{thebibliography}{"  longest.label  * "}" *
   write$ newline$
   "\providecommand{\url}[1]{#1}"
   write$ newline$
-  "\csname url@samestyle\endcsname"
+  "\csname url@rmstyle\endcsname"
   write$ newline$
   "\providecommand{\newblock}{\relax}"
   write$ newline$
   "\providecommand{\bibinfo}[2]{#2}"
   write$ newline$
-  "\providecommand{\BIBentrySTDinterwordspacing}{\spaceskip=0pt\relax}"
+  "\providecommand\BIBentrySTDinterwordspacing{\spaceskip=0pt\relax}"
   write$ newline$
-  "\providecommand{\BIBentryALTinterwordstretchfactor}{"
+  "\providecommand\BIBentryALTinterwordstretchfactor{"
   ALTinterwordstretchfactor * "}" *
   write$ newline$
-  "\providecommand{\BIBentryALTinterwordspacing}{\spaceskip=\fontdimen2\font plus "
+  "\providecommand\BIBentryALTinterwordspacing{\spaceskip=\fontdimen2\font plus "
   write$ newline$
   "\BIBentryALTinterwordstretchfactor\fontdimen3\font minus \fontdimen4\font\relax}"
   write$ newline$
-  "\providecommand{\BIBforeignlanguage}[2]{{%"
+  "\providecommand\BIBforeignlanguage[2]{{%"
   write$ newline$
   "\expandafter\ifx\csname l@#1\endcsname\relax"
   write$ newline$
@@ -1114,10 +1091,6 @@ FUNCTION {begin.bib}
   "\fi"
   write$ newline$
   "#2}}"
-  write$ newline$
-  "\providecommand{\BIBdecl}{\relax}"
-  write$ newline$
-  "\BIBdecl"
   write$ newline$
 }
 
@@ -1152,17 +1125,13 @@ FUNCTION {initialize.longest.label}
 }
 
 FUNCTION {longest.label.pass}
-{ type$ "ieeetranbstctl" =
-    { skip$ }
-    { number.label int.to.str$ 'label :=
-      number.label #1 + 'number.label :=
-      label width$ longest.label.width >
-        { label 'longest.label :=
-          label width$ 'longest.label.width :=
-        }
-        { skip$ }
-      if$
+{ number.label int.to.str$ 'label :=
+  number.label #1 + 'number.label :=
+  label width$ longest.label.width >
+    { label 'longest.label :=
+      label width$ 'longest.label.width :=
     }
+    'skip$
   if$
 }
 
@@ -1253,16 +1222,20 @@ FUNCTION {format.names}
           if$
           namesleft #1 >
             { ", " * t do.name.latex.cmd * }
-            { s nameptr "{ll}" format.name$ duplicate$ "others" =
+            {
+              numnames #2 >
+                { "," * }
+                'skip$
+              if$
+              s nameptr "{ll}" format.name$ duplicate$ "others" =
                 { 't := }
                 { pop$ }
               if$
               t "others" =
-                { " " * bbl.etal emphasize * }
-                { numnames #2 >
-                    { "," * }
-                    { skip$ }
-                  if$
+                {
+                  " " * bbl.etal emphasize *
+                }
+                {
                   bbl.and
                   space.word * t do.name.latex.cmd *
                 }
@@ -1723,11 +1696,11 @@ FUNCTION {format.pages}
 
 FUNCTION {format.tech.report.number}
 { number "number" bibinfo.check
-  this.to.prev.status
-  this.status.std
-  cap.status.std
   type duplicate$ empty$
     { pop$ 
+      this.to.prev.status
+      this.status.std
+      cap.status.std
       bbl.techrep
     }
     { skip$ }
@@ -1735,7 +1708,10 @@ FUNCTION {format.tech.report.number}
   "type" bibinfo.check 
   swap$ duplicate$ empty$
     { pop$ }
-    { tie.or.space.prefix * * }
+    { this.to.prev.status
+      this.status.std
+      cap.status.std
+      tie.or.space.prefix * * }
   if$
 }
 
@@ -1939,7 +1915,7 @@ FUNCTION {format.url}
     { this.to.prev.status
       this.status.std
       cap.yes 'status.cap :=
-      name.url.prefix " " *
+      bbl.urlprefix " " * 
       "\url{" * url * "}" *
       punct.no 'this.status.punct :=
       punct.period 'prev.status.punct :=
@@ -1977,6 +1953,9 @@ FUNCTION {article}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {book}
@@ -2001,6 +1980,9 @@ FUNCTION {book}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {booklet}
@@ -2018,6 +2000,9 @@ FUNCTION {booklet}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {electronic}
@@ -2036,6 +2021,9 @@ FUNCTION {electronic}
   fin.entry
   empty.entry.warn
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {inbook}
@@ -2058,6 +2046,9 @@ FUNCTION {inbook}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {incollection}
@@ -2079,6 +2070,9 @@ FUNCTION {incollection}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {inproceedings}
@@ -2105,6 +2099,9 @@ FUNCTION {inproceedings}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {manual}
@@ -2122,6 +2119,9 @@ FUNCTION {manual}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {mastersthesis}
@@ -2139,6 +2139,9 @@ FUNCTION {mastersthesis}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {misc}
@@ -2158,6 +2161,9 @@ FUNCTION {misc}
   fin.entry
   empty.entry.warn
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {patent}
@@ -2174,6 +2180,9 @@ FUNCTION {patent}
   fin.entry
   empty.entry.warn
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {periodical}
@@ -2192,6 +2201,9 @@ FUNCTION {periodical}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {phdthesis}
@@ -2209,6 +2221,9 @@ FUNCTION {phdthesis}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {proceedings}
@@ -2231,6 +2246,9 @@ FUNCTION {proceedings}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {standard}
@@ -2248,6 +2266,9 @@ FUNCTION {standard}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {techreport}
@@ -2266,6 +2287,9 @@ FUNCTION {techreport}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 FUNCTION {unpublished}
@@ -2280,6 +2304,9 @@ FUNCTION {unpublished}
   format.url output
   fin.entry
   if.url.std.interword.spacing
+% TB: added for annotation
+  format.annotate write$
+  newline$
 }
 
 
@@ -2345,7 +2372,7 @@ FUNCTION {IEEEtranBSTCTL}
     { skip$ }
     { CTLalt_stretch_factor
       'ALTinterwordstretchfactor :=
-      "\renewcommand{\BIBentryALTinterwordstretchfactor}{"
+      "\renewcommand\BIBentryALTinterwordstretchfactor{"
       ALTinterwordstretchfactor * "}" *
       write$ newline$
     }
@@ -2372,15 +2399,8 @@ FUNCTION {IEEEtranBSTCTL}
       'name.latex.cmd :=
     }
   if$
-  CTLname_url_prefix
-  missing$
-    { skip$ }
-    { CTLname_url_prefix
-      'name.url.prefix :=
-    }
-  if$
-
-
+  
+  
   num.names.shown.with.forced.et.al max.num.names.before.forced.et.al >
     { "CTLnames_show_etal cannot be greater than CTLmax_names_forced_etal in " cite$ * warning$ 
       max.num.names.before.forced.et.al 'num.names.shown.with.forced.et.al :=
@@ -2397,7 +2417,6 @@ FUNCTION {conference}{inproceedings}
 FUNCTION {online}{electronic}
 FUNCTION {internet}{electronic}
 FUNCTION {webpage}{electronic}
-FUNCTION {www}{electronic}
 FUNCTION {default.type}{misc}
 
 
@@ -2411,6 +2430,188 @@ READ
 EXECUTE {initialize.controls}
 EXECUTE {initialize.status.constants}
 EXECUTE {banner.message}
+
+
+
+% BEGIN sort code based on that of plain.bst
+
+FUNCTION {sortify}
+{ purify$
+  "l" change.case$
+}
+
+INTEGERS { len }
+
+FUNCTION {chop.word}
+{ 's :=
+  'len :=
+  s #1 len substring$ =
+    { s len #1 + global.max$ substring$ }
+    { s }
+  if$
+}
+
+FUNCTION {sort.format.names}
+{ 's :=
+  #1 'nameptr :=
+  ""
+  s num.names$ 'numnames :=
+  numnames 'namesleft :=
+    { namesleft #0 > }
+    { nameptr #1 >
+        { "   " * }
+        { skip$ }
+      if$
+      s nameptr "{vv{ } }{ll{ }}{  ff{ }}{  jj{ }}" format.name$ 't :=
+      nameptr numnames = t "others" = and
+        { "et al" * }
+        { t sortify * }
+      if$
+      nameptr #1 + 'nameptr :=
+      namesleft #1 - 'namesleft :=
+    }
+  while$
+}
+
+FUNCTION {sort.format.title}
+{ 't :=
+  "A " #2
+    "An " #3
+      "The " #4 t chop.word
+    chop.word
+  chop.word
+  sortify
+  #1 global.max$ substring$
+}
+
+FUNCTION {author.sort}
+{ author empty$
+    { key empty$
+        { "to sort, need author or key in " cite$ * warning$ "" }
+        { key sortify }
+      if$
+    }
+    { author sort.format.names }
+  if$
+}
+
+FUNCTION {author.editor.sort}
+{ author empty$
+    { editor empty$
+        { key empty$
+            { "to sort, need author, editor, or key in " cite$ * warning$ "" }
+            { key sortify }
+          if$
+        }
+        { editor sort.format.names }
+      if$
+    }
+    { author sort.format.names }
+  if$
+}
+
+FUNCTION {author.organization.sort}
+{ author empty$
+    { organization empty$
+        { key empty$
+            { "to sort, need author, organization, or key in " cite$ * warning$ "" }
+            { key sortify }
+          if$
+        }
+        { "The " #4 organization chop.word sortify }
+      if$
+    }
+    { author sort.format.names }
+  if$
+}
+
+FUNCTION {editor.organization.sort}
+{ editor empty$
+    { organization empty$
+        { key empty$
+            { "to sort, need editor, organization, or key in " cite$ * warning$ "" }
+            { key sortify }
+          if$
+        }
+        { "The " #4 organization chop.word sortify }
+      if$
+    }
+    { editor sort.format.names }
+  if$
+}
+
+FUNCTION {author.organization.institution.sort}
+{ author empty$
+    { organization empty$
+        { institution empty$
+            { key empty$
+                { "to sort, need author, organization, institution or key in " cite$ * warning$ "" }
+                { key sortify }
+              if$
+            }
+            { "The " #4 institution chop.word sortify }
+          if$
+        }
+        { "The " #4 organization chop.word sortify }
+      if$
+    }
+    { author sort.format.names }
+  if$
+}
+
+
+FUNCTION {presort}
+{ type$ "ieeetranbstctl" =
+    { key empty$
+        { "_" }
+        { key sortify }
+      if$
+    }
+    { type$ "book" =
+      type$ "inbook" =
+      or 
+        { author.editor.sort }
+        { type$ "proceedings" =
+          type$ "periodical" =
+          or
+            { editor.organization.sort }
+            { type$ "manual" =
+              type$ "electronic" =
+              type$ "misc" =
+              or or
+                { author.organization.sort }
+                { type$ "standard" =
+                   { author.organization.institution.sort }
+                   { author.sort }
+                 if$ 
+                }
+              if$
+            }
+          if$
+        }
+      if$
+      "    "
+      *
+      year empty.field.to.null.string sortify
+      *
+      "    "
+      *
+      title empty.field.to.null.string
+      sort.format.title
+      *
+    }
+  if$
+  #1 entry.max$ substring$
+  'sort.key$ :=
+}
+
+ITERATE {presort}
+
+SORT
+
+% END sort code based on that of plain.bst
+
+
 
 EXECUTE {initialize.longest.label}
 ITERATE {longest.label.pass}
