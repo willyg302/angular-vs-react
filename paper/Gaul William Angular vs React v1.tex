@@ -1,24 +1,5 @@
 \documentclass[12pt,letterpaper]{article}
 
-\usepackage[protrusion=true,expansion=true]{microtype}  % Better typography
-\usepackage{mathpazo}
-\usepackage[T1]{fontenc}
-\usepackage{setspace}
-\usepackage[margin=1in]{geometry}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage[breaklinks]{hyperref}
-\usepackage{tikz}
-	\usetikzlibrary{positioning}
-\usepackage{sidecap}
-\usepackage{graphicx}
-
-% For code samples
-\usepackage{textcomp}
-\usepackage{listings}
-\usepackage{color}
-
-
 % Import settings, which are stored in a separate file for convenience
 \input{settings.tex}
 
@@ -31,14 +12,24 @@
 \begin{document}
 \maketitle
 
-\renewcommand{\abstractname}{Executive Summary}
 \begin{singlespace*}
 \begin{abstract}
+	% @TODO: Rewrite when paper is done
 	The modern web is inherently dynamic. As the Internet has evolved -- as JavaScript plays an increasingly ubiquitous role and applications grow in size and complexity -- developers have turned ever more toward web frameworks to make sense of the chaos. Many companies now favor applicants who have experience working with these frameworks, and so a good understanding of their usage and purpose is crucial. Why do they exist? What problems do they purport to solve, if any? How will they benefit developers and end users alike? This project aims to answer these questions by examining two very popular web frameworks in more detail: Angular and React.
 \end{abstract}
 \end{singlespace*}
 
+
 \section{The Web, Then and Now}
+\vspace{-12pt}
+
+\begin{quote}
+	\singlespacing
+	\emph{In which a number of problems caused by the evolution of the web, and motivating the creation of web frameworks, is discussed.}
+\end{quote}
+
+
+
 
 \cite{Schlensker:2014}
 \cite{Angular:Docs}
@@ -46,7 +37,53 @@
 \cite{Green:2013}
 \cite{Hunt:2014}
 
-\includegraphics[width=0.9\textwidth]{hello-world.png}
+
+% \cite[p.~4]{Poole:2010}. Figure \ref{fig:AESystem} shows a visualization of the relationship between the agent and its environment.
+
+%\footnote{}
+
+\section{Hello Dynamic World}
+\vspace{-12pt}
+
+\begin{quote}
+	\singlespacing
+	\emph{In which the author uses a simple dynamic web page to investigate the designs of Angular and React.}
+\end{quote}
+
+
+\begin{SCfigure}[][h]
+	\centering
+	\caption{A simple example of a dynamic web element: the header text changes based on user input. Code for this example in pure JavaScript, as well as using the Angular and React frameworks, can be found in Appendix \ref{app:code}.}
+	\fbox{\includegraphics[width=0.5\textwidth]{hello-world.png}}
+	\label{fig:Example}
+\end{SCfigure}
+
+
+
+
+
+
+\section{The Future is Reactive}
+\vspace{-12pt}
+
+\begin{quote}
+	\singlespacing
+	\emph{In which it is suggested that the functional and asynchronous paradigms uncovered by React will drive web design for the foreseeable future.}
+\end{quote}
+
+
+
+
+\section{Conclusion}
+\vspace{-12pt}
+
+\begin{quote}
+	\singlespacing
+	\emph{In which the scores are tallied and a champion is crowned.}
+\end{quote}
+
+
+
 
 %This project aims to answer these questions by examining two very popular web frameworks in more detail: Angular and React. These frameworks were chosen in part for their popularity, but they also happen to take contrasting approaches to managing and abstracting application development. On the one hand, Angular offers an expressive extension of HTML specifically designed for dynamic views, centered on a concept called “two-way data binding.” On the other hand, React uses a component system that makes it easy to reason about application architecture, powered by “one-way data binding.”
 %By evaluating both frameworks against a common baseline (tentatively, a simple example of DOM manipulation via a dropdown and input field), it is possible to gain a cursory understanding of their designs – that is, how they work and what they intend to do. More information can be gleaned from extensive documentation and numerous tutorials online; in particular, the Angular and React websites will reveal a great deal about goals and objectives. Although the purpose of this project is not to decide which framework is “better,” an appraisal of both frameworks on qualities such as “intuitive” and “testable” will be conducted, as it can be a helpful reflection of good application design in general.
@@ -54,51 +91,30 @@
 
 
 
-%~15 pages
-
-%1. A well-chosen TITLE
-%2. A brief Executive Summary (Abstract) of the Project
-%3. A literature review of this topic (as appropriate)
-%4. A written discussion of your project
-%5. A discussion of any ethical issues you encountered while researching or preparing your project
-%6. A well-annotated bibliography of the references and materials you used in the course of preparing your project
-%7. A conclusion – What did you learn from all this?
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ~15 pages
+
+% 1. A Creative and Descriptive Title
+% 2. Abstract
+% 3. Literature Review or Introduction
+% 4. Methodology - what you did for yourself (in addition to the literature review)
+% 5. The results - your analysis - the meat of your report
+% 6. A conclusion which gracefully ends the whole paper
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
-% \cite[p.~4]{Poole:2010}. Figure \ref{fig:AESystem} shows a visualization of the relationship between the agent and its environment.
-
-\begin{SCfigure}[][h]
-	\centering
-	\caption{A very simplified view of an isolated agent-environment system. The agent impacts the environment through its actions, and is influenced by its perception of the environment.}
-	\begin{tikzpicture}[
-		node distance=1.5cm and 1cm,
-		ar/.style={->, >=latex},
-		mynode/.style={draw, text width=2.5cm, minimum height=1cm, align=center}
-	]
-		\node[mynode] (agent) {Agent};
-		\node[mynode,right=of agent] (env) {Environment};
-		\draw[ar] (agent.north) to[out=90,in=90] node[below] {Action} (env.north);
-		\draw[ar] (env.south) to[out=-90,in=-90] node[above] {Perception} (agent.south);
-	\end{tikzpicture}
-	\label{fig:AESystem}
-\end{SCfigure}
-
-%\footnote{}
-
-%\begin{quote}
-%	\singlespacing
-%	For each possible percept sequence, a rational agent should select an action that is expected to maximize its performance measure, given the evidence provided by the percept sequence and whatever built-in knowledge the agent has.
-%\end{quote}
 
 
 \newpage
 
 \appendix
 \section{Code Listings}
+\label{app:code}
 
 \subsection*{Pure JavaScript}
 
