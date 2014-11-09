@@ -11,6 +11,7 @@
 \usepackage{tikz}
 	\usetikzlibrary{positioning}
 \usepackage{sidecap}
+\usepackage{graphicx}
 
 % For code samples
 \usepackage{textcomp}
@@ -42,8 +43,10 @@
 \cite{Schlensker:2014}
 \cite{Angular:Docs}
 \cite{Hunt:2013}
+\cite{Green:2013}
+\cite{Hunt:2014}
 
-
+\includegraphics[width=0.9\textwidth]{hello-world.png}
 
 %This project aims to answer these questions by examining two very popular web frameworks in more detail: Angular and React. These frameworks were chosen in part for their popularity, but they also happen to take contrasting approaches to managing and abstracting application development. On the one hand, Angular offers an expressive extension of HTML specifically designed for dynamic views, centered on a concept called “two-way data binding.” On the other hand, React uses a component system that makes it easy to reason about application architecture, powered by “one-way data binding.”
 %By evaluating both frameworks against a common baseline (tentatively, a simple example of DOM manipulation via a dropdown and input field), it is possible to gain a cursory understanding of their designs – that is, how they work and what they intend to do. More information can be gleaned from extensive documentation and numerous tutorials online; in particular, the Angular and React websites will reveal a great deal about goals and objectives. Although the purpose of this project is not to decide which framework is “better,” an appraisal of both frameworks on qualities such as “intuitive” and “testable” will be conducted, as it can be a helpful reflection of good application design in general.
@@ -66,9 +69,7 @@
 
 
 
-%\section*{Preliminary Definitions}
-
-%Call our object an \emph{agent}: ``something that acts in an environment'' \cite[p.~4]{Poole:2010}. Figure \ref{fig:AESystem} shows a visualization of the relationship between the agent and its environment.
+% \cite[p.~4]{Poole:2010}. Figure \ref{fig:AESystem} shows a visualization of the relationship between the agent and its environment.
 
 \begin{SCfigure}[][h]
 	\centering
@@ -86,9 +87,7 @@
 	\label{fig:AESystem}
 \end{SCfigure}
 
-\section*{What is an Artifact? What is Intelligence?}
-
-%To simplify matters \footnote{It is common to think of an artifact as something ``made'' rather than ``born''. However, this definition is ambiguous and difficult to test. How would we characterize objects such as genetic clones? Another example: toasters are artificial because we make them, but what if we suddenly discovered a ``toaster tree'' deep in the Amazon jungle? \cite{CM317}.}, we define an \emph{artifact} to be an agent whose physical system is a digital computer. A \emph{digital computer} is a machine that implements an algorithm, or an ordered and finite set of precise, explicit, repeatable instructions \cite{Anderson:2006}. This is the same as saying that an artifact is an agent whose agent function is an algorithm. Note here that we are not concerned with the physical nature of the computer (e.g. that it runs on electricity or uses transistors) because such characteristics may not be observable.
+%\footnote{}
 
 %\begin{quote}
 %	\singlespacing
@@ -131,13 +130,3 @@
 \end{flushleft}
 
 \end{document}
-
-
-%@BOOK{Russell:2010,
-	%author = "Russell, S. and Norvig, P.",
-	%title = "{Artificial Intelligence: A Modern Approach}",
-	%edition = 3,
-	%publisher = "Pearson Education, Inc.",
-	%address = "Upper Saddle River, NJ",
-	%year = 2010
-%}
