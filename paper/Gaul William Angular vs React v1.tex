@@ -38,10 +38,6 @@
 \cite{Hunt:2014}
 
 
-% \cite[p.~4]{Poole:2010}. Figure \ref{fig:AESystem} shows a visualization of the relationship between the agent and its environment.
-
-%\footnote{}
-
 \section{Hello Dynamic World}
 \vspace{-12pt}
 
@@ -52,7 +48,6 @@
 
 To gain a better understanding of how frameworks improve upon pure JavaScript, it is necessary to consider a simple example -- in this case, the web page shown in Figure \ref{fig:Example}.
 
-
 \begin{SCfigure}[][h]
 	\centering
 	\caption{A simple example of a dynamic web element: the header text changes based on user input. Code for this example in pure JavaScript, as well as using the Angular and React frameworks, can be found in Appendix \ref{app:code}.}
@@ -60,6 +55,27 @@ To gain a better understanding of how frameworks improve upon pure JavaScript, i
 	\label{fig:Example}
 \end{SCfigure}
 
+Syncing the contents of an \texttt{<h1>} element to an input is fairly straightforward with pure JavaScript: attach an \emph{event listener} to the input, and update the header's \texttt{innerHTML} accordingly whenever an event is fired. The problem with this approach is that it does not scale well. Imagine having to handle the updates of several thousand UI elements, a typical number for a web application as complex as Facebook. This pattern would have to be duplicated thousands of times, and the codebase would quickly become unmanageable.
+
+In contrast, the Angular code contains no such low-level event handling. Rather, a JavaScript variable is introduced into the application's scope and bound to both the input and header \footnote{The variable, \texttt{\$scope.subject}, is specified as the input's \emph{model} via the \texttt{ng-model} attribute and the header's content via an inline template.}. This concept is known as \emph{two-way data binding} because updates may flow in both directions; when a user modifies the input its underlying model (the variable) is updated, and similarly when the variable is modified via JavaScript its new value will be reflected in the UI \cite{Angular:Docs}. The resulting code is highly declarative in nature, and moreover very terse, as nearly all of the low-level logic is handled by Angular behind the scenes.
+
+React takes a different tack by removing HTML from the picture entirely. In its place are React components that encapsulate state and business logic, and that may be nested to construct complex applications. Updates are handled by describing the UI as it should appear at any discrete moment in time within the \texttt{render/0} function -- whenever the state of a component changes, it is automatically ``re-rendered'' \footnote{Here the markup for the input depends upon \texttt{this.state.subject}. Whenever the input is changed, \texttt{this.setState/1} is triggered with the new value, and the UI is rendered again.}. Because events from the user must still be handled manually, this is known as \emph{one-way data binding} \cite{Hunt:2014}.
+
+
+
+
+One-way versus two-way data binding may seem like a simple distinction, but it has profound implications for how an application is designed, developed, and even reasoned about.
+
+
+% On the one hand, Angular offers an expressive extension of HTML specifically designed for dynamic views, centered on a concept called “two-way data binding.”
+
+% On the other hand, React uses a component system that makes it easy to reason about application architecture, powered by “one-way data binding.”
+
+
+% "Angular was built with the CRUD application in mind." (DOCS)
+
+
+% https://docs.angularjs.org/guide/databinding
 
 
 
@@ -86,9 +102,6 @@ To gain a better understanding of how frameworks improve upon pure JavaScript, i
 
 
 
-
-%This project aims to answer these questions by examining two very popular web frameworks in more detail: Angular and React. These frameworks were chosen in part for their popularity, but they also happen to take contrasting approaches to managing and abstracting application development. On the one hand, Angular offers an expressive extension of HTML specifically designed for dynamic views, centered on a concept called “two-way data binding.” On the other hand, React uses a component system that makes it easy to reason about application architecture, powered by “one-way data binding.”
-%By evaluating both frameworks against a common baseline (tentatively, a simple example of DOM manipulation via a dropdown and input field), it is possible to gain a cursory understanding of their designs – that is, how well they work and what they intend to do. More information can be gleaned from extensive documentation and numerous tutorials online; in particular, the Angular and React websites will reveal a great deal about goals and objectives. Although the purpose of this project is not to decide which framework is “better,” an appraisal of both frameworks on qualities such as “intuitive” and “testable” will be conducted, as it can be a helpful reflection of good application design in general.
 %It is hoped that this project will inspire any budding web developers in the class to embrace web frameworks and the design principles that they afford. Moreover, as graduation approaches, studying this subject should be good preparation for entering the web development industry.
 
 
