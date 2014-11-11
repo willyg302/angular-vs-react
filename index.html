@@ -36,6 +36,73 @@
 			</section>
 
 			<section>
+				<h2>Some Street Cred</h2>
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th>Angular</th>
+							<th>React</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>Made By</th>
+							<td>Google</td>
+							<td>Facebook</td>
+						<tr>
+						<tr>
+							<th>Powers</th>
+							<td>YouTube, VEVO, DoubleClick</td>
+							<td>Facebook Notifications, Instagram</td>
+						<tr>
+						<tr>
+							<th>Appeared</th>
+							<td>Jan 5, 2010</td>
+							<td>May 29, 2013</td>
+						<tr>
+						<tr>
+							<th style="border-bottom: none;">GitHub</th>
+							<td id="angular-stars"></td>
+							<td id="react-stars"></td>
+						</tr>
+					</tbody>
+				</table>
+				<p><br>And...companies <i>care about this stuff</i>.</p>
+				<script type="text/javascript">
+					var elem = null;
+					var stars = [{
+						elem: 'angular-stars',
+						user: 'angular',
+						repo: 'angular.js'
+					}, {
+						elem: 'react-stars',
+						user: 'facebook',
+						repo: 'react'
+					}];
+
+					function getStars() {
+						if (stars.length === 0) {
+							return;
+						}
+						var next = stars.shift();
+						elem = document.getElementById(next.elem);
+						var s = document.createElement('script');
+						s.src = "https://api.github.com/repos/" + next.user + "/" + next.repo + "?callback=callback";
+						var head = document.getElementsByTagName('head')[0];
+						head.insertBefore(s, head.firstChild);
+					}
+
+					function callback(obj) {
+						elem.innerHTML = obj.data.watchers;
+						getStars();
+					}
+
+					getStars();
+				</script>
+			</section>
+
+			<section>
 				<h2>The Web: Then</h2>
 				<iframe width="960px" height="520px" src="http://www.dokimos.org/ajff/indexpage.html"></iframe>
 			</section>
