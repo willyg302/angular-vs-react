@@ -15,7 +15,9 @@
 \begin{singlespace*}
 \begin{abstract}
 	% @TODO: Rewrite when paper is done
-	The modern web is inherently dynamic. As the Internet has evolved -- as JavaScript plays an increasingly ubiquitous role and applications grow in size and complexity -- developers have turned ever more toward web frameworks to make sense of the chaos. Many companies now favor applicants who have experience working with these frameworks, and so a good understanding of their usage and purpose is crucial. Why do they exist? What problems do they purport to solve, if any? How will they benefit developers and end users alike? This project aims to answer these questions by examining two very popular web frameworks in more detail: Angular and React.
+	The modern web is inherently dynamic. As the Internet has evolved -- as JavaScript plays an increasingly ubiquitous role and applications grow in size and complexity -- developers have turned ever more toward \emph{web frameworks} to make sense of the chaos. Many companies now favor applicants who have experience working with these frameworks, and so a good understanding of their usage and purpose is crucial. Why do they exist? What problems do they purport to solve, if any? How will they benefit developers and end users alike?
+
+	This project aims to answer these questions by examining two very popular web frameworks in more detail: Angular and React.
 \end{abstract}
 \end{singlespace*}
 
@@ -72,12 +74,68 @@ React takes a different tack by removing HTML from the picture entirely. In its 
 One-way versus two-way data binding may seem like a simple distinction, but it has profound implications for how an application is designed, developed, and even reasoned about.
 
 
+
+
+
+
 % On the one hand, Angular offers an expressive extension of HTML specifically designed for dynamic views, centered on a concept called “two-way data binding.”
 
 % On the other hand, React uses a component system that makes it easy to reason about application architecture, powered by “one-way data binding.”
 
 
-% "Angular was built with the CRUD application in mind." (DOCS)
+
+
+%\cite{Green:2013}
+% Three D's: directives, dependency injection, data binding
+% Declarative
+% Directives are components
+
+
+
+
+%\cite{Hunt:2014}
+% UI's are difficult to build because they have a lot of state and must be human-verified (how does it look?)
+
+% ``We should do our utmost to shorten the conceptual gap between the static program and the dynamic process.'' - Edsger Dijkstra
+
+% Contemporary data binding isn't simple, but ``Simplicity is prerequisite for reliability.'' -Dijkstra
+
+
+
+
+% \cite{Angular:Docs}
+% "Angular was built with the CRUD application in mind."
+% A complete client-side solution
+% Not good for intensive and tricky DOM manipulation
+
+% It attempts to minimize the impedance mismatch between document centric HTML and what an application needs by creating new HTML constructs. Angular teaches the browser new syntax through a construct we call directives. Examples include:
+
+% Data binding, as in {{}}.
+% DOM control structures for repeating/hiding DOM fragments.
+% Support for forms and form validation.
+% Attaching new behavior to DOM elements, such as DOM event handling.
+% Grouping of HTML into reusable components.
+
+% The Zen of Angular
+% Angular is built around the belief that declarative code is better than imperative when it comes to building UIs and wiring software components together, while imperative code is excellent for expressing business logic.
+
+% decouple DOM manipulation from app logic for better testability
+% regard app testing as equal in importance to app writing
+% decouple the client side of an app from the server side
+% the framework guides developers through the entire journey of building an app: from designing the UI, through writing the business logic, to testing
+
+
+
+% \cite{Hunt:2013}
+
+% React is a library for building composable user interfaces. It encourages the creation of reusable UI components which present data that changes over time.
+
+%an advantage over templates for a few reasons:
+
+% JavaScript is a flexible, powerful programming language with the ability to build abstractions.
+% By unifying your markup with its corresponding view logic, React can actually make views easier to extend and maintain.
+% By baking an understanding of markup and content into JavaScript, there's no manual string concatenation and therefore less surface area for XSS vulnerabilities.
+
 
 
 % https://docs.angularjs.org/guide/databinding
