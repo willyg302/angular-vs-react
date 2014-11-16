@@ -36,42 +36,27 @@ By the mid-1990s, the web began to gain widespread popularity, causing companies
 
 The desire for more data-driven applications ushered in an era commonly known as ``Web 2.0,'' characterized by Dynamic HTML (DHTML) and rudimentary animated interactivity. At around this time, developers also began to feel the pangs of cross-platform development, as major browser vendors each tried to implement their own version of the HTML specification. These difficulties would only mount as Internet-capable mobile devices made their debut, forcing many designers to adapt existing sites for mobile-friendly consumption. \cite{Schlensker:2014}.
 
+Fast-forward to the present: static, document-based web pages have largely been replaced by dynamic single-page applications (SPAs). JavaScript is a mature language with a strong community, and coupled with the recent release of CSS3, forms the cornerstone of the HTML5 specification that ``attempts to address \ldots the needs of modern Web design and the application-based future of the Web.'' \cite[p.~14]{Sklar:2012}. Development is no longer simply about cultivating a web presence -- rather, there is a distinct culture of \emph{integration} with existing services such as Twitter, Disqus, and GitHub.
+
+What problems has this evolution caused? As applications continue to grow in complexity and scale, their architectures become increasingly difficult to reason about. With such weak standardization across the Internet, a great deal of code and logic is needlessly reimplemented \cite{Schlensker:2014}. Perhaps most troubling, however, is that HTML is \emph{still not designed for dynamic applications}, causing an ``impedance mismatch'' between what developers want to do and what web platforms are capable of supporting \cite{Angular:Docs, Hunt:2014}.
 
 
 
-
-% - Static &rarr; Dynamic
-% - Pages and Links &rarr; Single-Page Applications (SPAs)
-% - Desktop &rarr; Desktop, Mobile, Tablet, Watch...
-% - Web Presence &rarr; Integration
-
-% - Websites and web applications are getting more complex
-% - A lot of code is repeated
-% - Application logic is increasingly hard to reason about
-% - No standard way of doing things
+Fortunately, a solution exists: web frameworks.
 
 
-% From Schlensker:2014
 
-% Today
-% - JavaScript a "mature language" (tools, best practices communities)
-% - CSS3
-% - HTML5
-% - Desktops and mobile
-
-
-% http://books.google.com/books?id=1cgIAAAAQBAJ&pg=PA8&dq=how+the+web+has+evolved&hl=en&sa=X&ei=_wBjVKOjBcvooATrq4GwBg&ved=0CCQQ6AEwAQ#v=onepage&q=how%20the%20web%20has%20evolved&f=false
-
-
+% a library - a collection of functions which are useful when writing web apps. Your code is in charge and it calls into the library when it sees fit. E.g., jQuery.
+% frameworks - a particular implementation of a web application, where your code fills in the details. The framework is in charge and it calls into your code when it needs something app specific. E.g., durandal, ember, etc.
 
 
 
 %  \cite{Schlensker:2014}
-%  \cite{Angular:Docs}
-%  \cite{Hunt:2013}
+%  \cite{Angular:Docs}			https://docs.angularjs.org/guide/introduction
+%  \cite{Hunt:2013}				http://facebook.github.io/react/blog/2013/06/05/why-react.html
 %  \cite{Green:2013}
 %  \cite{Hunt:2014}
-%  \cite{Sklar:2012}
+%  \cite{Sklar:2012}			http://books.google.com/books?id=1cgIAAAAQBAJ&pg=PA8&dq=how+the+web+has+evolved&hl=en&sa=X&ei=_wBjVKOjBcvooATrq4GwBg&ved=0CCQQ6AEwAQ#v=onepage&q=how%20the%20web%20has%20evolved&f=false
 
 
 \section{Hello Dynamic World}
