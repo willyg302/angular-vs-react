@@ -17,7 +17,7 @@
 	% @TODO: Rewrite when paper is done
 	The modern web is inherently dynamic. As the Internet has evolved -- as JavaScript plays an increasingly ubiquitous role and applications grow in size and complexity -- developers have turned ever more toward \emph{web frameworks} to make sense of the chaos. Many companies now favor applicants who have experience working with these frameworks, and so a good understanding of their usage and purpose is crucial. Why do they exist? What problems do they purport to solve, if any? How will they benefit developers and end users alike?
 
-	This project aims to answer these questions by examining two very popular web frameworks in more detail: Angular and React.
+	This paper answers these questions by examining two very popular web frameworks in more detail: Angular and React.
 \end{abstract}
 \end{singlespace*}
 
@@ -68,29 +68,24 @@ In contrast, the Angular code contains no such low-level event handling. Rather,
 
 React takes a different tack by removing HTML from the picture entirely. In its place are React components that encapsulate state and business logic, and that may be nested to construct complex applications. Updates are handled by describing the UI as it should appear at any discrete moment in time within the \texttt{render/0} function -- whenever the state of a component changes, it is automatically ``re-rendered'' \footnote{Here the markup for the input depends upon \texttt{this.state.subject}. Whenever the input is changed, \texttt{this.setState/1} is triggered with the new value, and the UI is rendered again.}. Because events from the user must still be handled manually, this is known as \emph{one-way data binding} \cite{Hunt:2014}.
 
+One-way versus two-way data binding may seem like a simple distinction, but it has profound implications for how an application is designed, developed, and even reasoned about. A closer look at the code will help reveal how this design choice has guided the goals and objectives of both frameworks.
+
+First, consider that one of the major tenets in the so-called ``Zen of Angular'' is that a framework should ``[guide] developers through the entire journey of building an app'' \cite[p.~1]{Angular:Docs}. Angular does this by extending HTML to provide facilities for everything from form validation to reusable components (known as \emph{directives} in Angular) to testing \cite{Green:2013}. In other words, Angular tries to accommodate the entire development lifecycle, with the goal of being a complete solution for building web applications. Two-way data binding is thus a perfect match because it abstracts away as much as possible: the provided example includes no application logic, and nearly all structure is expressed in HTML.
 
 
 
-One-way versus two-way data binding may seem like a simple distinction, but it has profound implications for how an application is designed, developed, and even reasoned about.
 
 
 
 
+% \cite{Angular:Docs}
+% "Angular was built with the CRUD application in mind."
+% Not good for intensive and tricky DOM manipulation
 
 
-% On the one hand, Angular offers an expressive extension of HTML specifically designed for dynamic views, centered on a concept called “two-way data binding.”
+
 
 % On the other hand, React uses a component system that makes it easy to reason about application architecture, powered by “one-way data binding.”
-
-
-
-
-%\cite{Green:2013}
-% Three D's: directives, dependency injection, data binding
-% Declarative
-% Directives are components
-
-
 
 
 %\cite{Hunt:2014}
@@ -99,30 +94,6 @@ One-way versus two-way data binding may seem like a simple distinction, but it h
 % ``We should do our utmost to shorten the conceptual gap between the static program and the dynamic process.'' - Edsger Dijkstra
 
 % Contemporary data binding isn't simple, but ``Simplicity is prerequisite for reliability.'' -Dijkstra
-
-
-
-
-% \cite{Angular:Docs}
-% "Angular was built with the CRUD application in mind."
-% A complete client-side solution
-% Not good for intensive and tricky DOM manipulation
-
-% It attempts to minimize the impedance mismatch between document centric HTML and what an application needs by creating new HTML constructs. Angular teaches the browser new syntax through a construct we call directives. Examples include:
-
-% Data binding, as in {{}}.
-% DOM control structures for repeating/hiding DOM fragments.
-% Support for forms and form validation.
-% Attaching new behavior to DOM elements, such as DOM event handling.
-% Grouping of HTML into reusable components.
-
-% The Zen of Angular
-% Angular is built around the belief that declarative code is better than imperative when it comes to building UIs and wiring software components together, while imperative code is excellent for expressing business logic.
-
-% decouple DOM manipulation from app logic for better testability
-% regard app testing as equal in importance to app writing
-% decouple the client side of an app from the server side
-% the framework guides developers through the entire journey of building an app: from designing the UI, through writing the business logic, to testing
 
 
 
@@ -138,14 +109,10 @@ One-way versus two-way data binding may seem like a simple distinction, but it h
 
 
 
-% https://docs.angularjs.org/guide/databinding
-
-
-
 % [x] \cite{Schlensker:2014}		http://www.slideshare.net/prasidpathak/copy-of-frontend-tech-talk-deck-july-2014
 % [x] \cite{Angular:Docs}			https://docs.angularjs.org/guide/introduction
 % [ ] \cite{Hunt:2013}				http://facebook.github.io/react/blog/2013/06/05/why-react.html
-% [ ] \cite{Green:2013}				http://www.youtube.com/watch?v=HCR7i5F5L8c
+% [x] \cite{Green:2013}				http://www.youtube.com/watch?v=HCR7i5F5L8c
 % [x] \cite{Hunt:2014}				https://www.youtube.com/watch?v=-DX3vJiqxm4
 % [x] \cite{Sklar:2012}				http://books.google.com/books?id=1cgIAAAAQBAJ&pg=PA8&dq=how+the+web+has+evolved&hl=en&sa=X&ei=_wBjVKOjBcvooATrq4GwBg&ved=0CCQQ6AEwAQ#v=onepage&q=how%20the%20web%20has%20evolved&f=false
 
