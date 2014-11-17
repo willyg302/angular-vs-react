@@ -72,50 +72,16 @@ One-way versus two-way data binding may seem like a simple distinction, but it h
 
 First, consider that one of the major tenets in the so-called ``Zen of Angular'' is that a framework should ``[guide] developers through the entire journey of building an app'' \cite[p.~1]{Angular:Docs}. Angular does this by extending HTML to provide facilities for everything from form validation to reusable components (known as \emph{directives} in Angular) to testing \cite{Green:2013}. In other words, Angular tries to accommodate the entire development lifecycle, with the goal of being a complete solution for building web applications. Two-way data binding is thus a perfect match because it abstracts away as much as possible: the provided example includes no application logic, and nearly all structure is expressed in HTML.
 
+The goal of React can be summed up in one quote \cite{Hunt:2014}:
 
+\begin{quote}
+	\singlespacing
+	``We should do our utmost to shorten the conceptual gap between the static program and the dynamic process.''
 
+	\raggedleft --- Edsger Dijkstra
+\end{quote}
 
-
-
-
-% \cite{Angular:Docs}
-% "Angular was built with the CRUD application in mind."
-% Not good for intensive and tricky DOM manipulation
-
-
-
-
-% On the other hand, React uses a component system that makes it easy to reason about application architecture, powered by “one-way data binding.”
-
-
-%\cite{Hunt:2014}
-% UI's are difficult to build because they have a lot of state and must be human-verified (how does it look?)
-
-% ``We should do our utmost to shorten the conceptual gap between the static program and the dynamic process.'' - Edsger Dijkstra
-
-% Contemporary data binding isn't simple, but ``Simplicity is prerequisite for reliability.'' -Dijkstra
-
-
-
-% \cite{Hunt:2013}
-
-% React is a library for building composable user interfaces. It encourages the creation of reusable UI components which present data that changes over time.
-
-%an advantage over templates for a few reasons:
-
-% JavaScript is a flexible, powerful programming language with the ability to build abstractions.
-% By unifying your markup with its corresponding view logic, React can actually make views easier to extend and maintain.
-% By baking an understanding of markup and content into JavaScript, there's no manual string concatenation and therefore less surface area for XSS vulnerabilities.
-
-
-
-% [x] \cite{Schlensker:2014}		http://www.slideshare.net/prasidpathak/copy-of-frontend-tech-talk-deck-july-2014
-% [x] \cite{Angular:Docs}			https://docs.angularjs.org/guide/introduction
-% [ ] \cite{Hunt:2013}				http://facebook.github.io/react/blog/2013/06/05/why-react.html
-% [x] \cite{Green:2013}				http://www.youtube.com/watch?v=HCR7i5F5L8c
-% [x] \cite{Hunt:2014}				https://www.youtube.com/watch?v=-DX3vJiqxm4
-% [x] \cite{Sklar:2012}				http://books.google.com/books?id=1cgIAAAAQBAJ&pg=PA8&dq=how+the+web+has+evolved&hl=en&sa=X&ei=_wBjVKOjBcvooATrq4GwBg&ved=0CCQQ6AEwAQ#v=onepage&q=how%20the%20web%20has%20evolved&f=false
-
+\noindent Whereas Angular is ``not good for intensive and tricky DOM manipulation'' \cite[p.~2]{Angular:Docs}, React excels at keeping a UI in sync with its underlying state. Unlike Angular, which tries to satisfy all development needs, React has a focused objective: encourage ``the creation of reusable UI components which present data that changes over time'' \cite[p.~1]{Hunt:2013}. Note that the example React code is not shorter than its pure JavaScript counterpart; there is still a fair amount of boilerplate in constructing the events to manage state. React sacrifices code simplicity for \emph{conceptual} simplicity, and therein lies its greatest strength.
 
 
 \section{The Future is Reactive}
@@ -125,6 +91,31 @@ First, consider that one of the major tenets in the so-called ``Zen of Angular''
 	\singlespacing
 	\emph{In which it is suggested that the functional and asynchronous paradigms uncovered by React will drive web design for the foreseeable future.}
 \end{quote}
+
+
+
+
+
+
+% React  easy to reason about application architecture
+
+
+%\cite{Hunt:2014}
+% UI's are difficult to build because they have a lot of state and must be human-verified (how does it look?)
+
+
+
+
+
+
+
+
+% [x] \cite{Schlensker:2014}		http://www.slideshare.net/prasidpathak/copy-of-frontend-tech-talk-deck-july-2014
+% [x] \cite{Angular:Docs}			https://docs.angularjs.org/guide/introduction
+% [x] \cite{Hunt:2013}				http://facebook.github.io/react/blog/2013/06/05/why-react.html
+% [x] \cite{Green:2013}				http://www.youtube.com/watch?v=HCR7i5F5L8c
+% [x] \cite{Hunt:2014}				https://www.youtube.com/watch?v=-DX3vJiqxm4
+% [x] \cite{Sklar:2012}				http://books.google.com/books?id=1cgIAAAAQBAJ&pg=PA8&dq=how+the+web+has+evolved&hl=en&sa=X&ei=_wBjVKOjBcvooATrq4GwBg&ved=0CCQQ6AEwAQ#v=onepage&q=how%20the%20web%20has%20evolved&f=false
 
 
 
@@ -149,7 +140,7 @@ First, consider that one of the major tenets in the so-called ``Zen of Angular''
 % [x] 1. A Creative and Descriptive Title
 % [ ] 2. Abstract
 % [x] 3. Literature Review or Introduction
-% [ ] 4. Methodology - what you did for yourself (in addition to the literature review)
+% [x] 4. Methodology - what you did for yourself (in addition to the literature review)
 % [ ] 5. The results - your analysis - the meat of your report
 % [ ] 6. A conclusion which gracefully ends the whole paper
 
