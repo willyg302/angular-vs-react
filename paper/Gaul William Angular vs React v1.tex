@@ -14,10 +14,9 @@
 
 \begin{singlespace*}
 \begin{abstract}
-	% @TODO: Rewrite when paper is done
 	The modern web is inherently dynamic. As the Internet has evolved -- as JavaScript plays an increasingly ubiquitous role and applications grow in size and complexity -- developers have turned ever more toward \emph{web frameworks} to make sense of the chaos. Many companies now favor applicants who have experience working with these frameworks, and so a good understanding of their usage and purpose is crucial. Why do they exist? What problems do they purport to solve, if any? How will they benefit developers and end users alike?
 
-	This paper answers these questions by examining two very popular web frameworks in more detail: Angular and React.
+	This paper answers these questions by examining two very popular web frameworks in more detail: Angular and React. The two frameworks are first compared against pure JavaScript and each other by way of a simple dynamic web page. The objectives and contrasting designs of both frameworks are then explored in the context of this example. Finally, a goal for each framework is proposed and its impact on web development considered.
 \end{abstract}
 \end{singlespace*}
 
@@ -96,28 +95,7 @@ Thus far it has been shown that Angular and React were created to solve the same
 
 Indeed, the design of React demonstrates considerable foresight. In nearly all software applications -- ranging from websites to video games to embedded systems -- the UI is nothing more than an alternate representation of the application data model, albeit much more complex and difficult to build. For one thing, there is no way to reliably test UI behavior short of human verification (does it ``look good''?) \cite{Hunt:2014}. Even more challenging, a typical UI is inherently asynchronous \footnote{This idea has gained quite a bit of traction in recent years, appearing under such guises as ``event-driven programming'' and the ``evented model.'' For a wealth of information on the subject in the realm of JavaScript, search for (in order of increasing sophistication): callbacks, promises, Functional Reactive Programming (FRP), and Communicating Sequential Processes (CSP).}, causing a multitude of problems for an industry that has been by convention imperative and sequential.
 
-
-
-
-Crafting a UI is not the only challenge of building a modern web application, but it is certainly one of the toughest and most time-consuming, and precisely the challenge that React was meant to solve.
-
-
-
-
-
-
-
-
-
-
-% [x] \cite{Schlensker:2014}		http://www.slideshare.net/prasidpathak/copy-of-frontend-tech-talk-deck-july-2014
-% [x] \cite{Angular:Docs}			https://docs.angularjs.org/guide/introduction
-% [x] \cite{Hunt:2013}				http://facebook.github.io/react/blog/2013/06/05/why-react.html
-% [x] \cite{Green:2013}				http://www.youtube.com/watch?v=HCR7i5F5L8c
-% [x] \cite{Hunt:2014}				https://www.youtube.com/watch?v=-DX3vJiqxm4
-% [x] \cite{Sklar:2012}				http://books.google.com/books?id=1cgIAAAAQBAJ&pg=PA8&dq=how+the+web+has+evolved&hl=en&sa=X&ei=_wBjVKOjBcvooATrq4GwBg&ved=0CCQQ6AEwAQ#v=onepage&q=how%20the%20web%20has%20evolved&f=false
-
-
+Crafting a UI is not the only challenge of building a modern web application, but it is certainly one of the toughest and most time-consuming. Applications will only get more complex. Interfaces will only get more dynamic. It is no coincidence that these are precisely the trends that React was meant to address by encouraging sensible application architecture and handling change over time. Thus, although React may not be the perfect solution for every web-based project, its design and core principles will likely heavily influence the web in coming years.
 
 
 \section{Conclusion}
@@ -128,23 +106,17 @@ Crafting a UI is not the only challenge of building a modern web application, bu
 	\emph{In which the points are tallied and a champion is crowned.}
 \end{quote}
 
+It may be tempting to conclude at this point that React is somehow ``better'' than Angular. However, this is not the case.
+
+
+
+
 
 
 %It is hoped that this project will inspire any budding web developers in the class to embrace web frameworks and the design principles that they afford. Moreover, as graduation approaches, studying this subject should be good preparation for entering the web development industry.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% ~15 pages
-
-% [x] 1. A Creative and Descriptive Title
-% [ ] 2. Abstract
-% [x] 3. Literature Review or Introduction
-% [x] 4. Methodology - what you did for yourself (in addition to the literature review)
-% [ ] 5. The results - your analysis - the meat of your report
-% [ ] 6. A conclusion which gracefully ends the whole paper
-
-%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \newpage
