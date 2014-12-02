@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Angular vs. React</title>
+	<meta name="author" content="William Gaul">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/sky.css" id="theme">
+	<link rel="stylesheet" href="css/zenburn.css">
+	<style>
+		#bibliography ul {
+			font-size: 75%;
+		}
+	</style>
+
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-background="img/paper-bg.jpg">
+				<img width="788" src="img/avr.svg" style="border: none; box-shadow: none;">
+				<p>
+					<small>
+						<a href="http://willyg302.github.io/">William Gaul</a>
+						&middot;
+						ICS 419 Course Project
+					</small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Some Street Cred</h2>
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th>Angular</th>
+							<th>React</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>Made By</th>
+							<td>Google</td>
+							<td>Facebook</td>
+						<tr>
+						<tr>
+							<th>Powers</th>
+							<td>YouTube, VEVO, DoubleClick</td>
+							<td>Facebook Notifications, Instagram</td>
+						<tr>
+						<tr>
+							<th>Appeared</th>
+							<td>Jan 5, 2010</td>
+							<td>May 29, 2013</td>
+						<tr>
+						<tr>
+							<th style="border-bottom: none;">GitHub</th>
+							<td id="angular-stars"></td>
+							<td id="react-stars"></td>
+						</tr>
+					</tbody>
+				</table>
+				<p><br>And...companies <i>care about this stuff</i>.</p>
+				<script type="text/javascript">
+					var elem = null;
+					var stars = [{
+						elem: 'angular-stars',
+						user: 'angular',
+						repo: 'angular.js'
+					}, {
+						elem: 'react-stars',
+						user: 'facebook',
+						repo: 'react'
+					}];
+
+					function getStars() {
+						if (stars.length === 0) {
+							return;
+						}
+						var next = stars.shift();
+						elem = document.getElementById(next.elem);
+						var s = document.createElement('script');
+						s.src = "https://api.github.com/repos/" + next.user + "/" + next.repo + "?callback=callback";
+						var head = document.getElementsByTagName('head')[0];
+						head.insertBefore(s, head.firstChild);
+					}
+
+					function callback(obj) {
+						elem.innerHTML = obj.data.watchers;
+						getStars();
+					}
+
+					getStars();
+				</script>
+			</section>
+
+			<section>
+				<h2>The Web: Then</h2>
+				<iframe width="960px" height="520px" src="http://www.dokimos.org/ajff/indexpage.html"></iframe>
+			</section>
+
+			<section>
+				<h2>The Web: Now</h2>
+				<iframe id="autumn" width="960px" height="520px" src="http://oos.moxiecode.com/js_webgl/autumn/"></iframe>
+				<script type="text/javascript">
+					function killAutumn() {
+						document.getElementById('autumn').src = 'http://www.memecreator.org/static/images/templates/751154.jpg';
+					}
+				</script>
+				<button onclick="killAutumn()" style="font-size: 24px;">Panda-ify</button>
+			</section>
+
+			<section>
+				<h2>The Web: Now</h2>
+				<iframe width="960px" height="520px" src="http://nebez.github.io/floppybird/"></iframe>
+			</section>
+
+			<section data-markdown>
+				<script type="text/template">
+					## What Changed?
+
+					- Static &rarr; Dynamic <!-- .element: class="fragment" -->
+					- Pages and Links &rarr; Single-Page Applications (SPAs) <!-- .element: class="fragment" -->
+					- Desktop &rarr; Desktop, Mobile, Tablet, Watch... <!-- .element: class="fragment" -->
+					- Web Presence &rarr; Integration <!-- .element: class="fragment" -->
+				</script>
+			</section>
+
+			<section data-markdown>
+				<script type="text/template">
+					## Problems
+
+					- Websites and web applications are getting more complex <!-- .element: class="fragment" -->
+					- A lot of code is repeated <!-- .element: class="fragment" -->
+					- Application logic is increasingly hard to reason about <!-- .element: class="fragment" -->
+					- No standard way of doing things <!-- .element: class="fragment" -->
+				</script>
+			</section>
+
+			<section>
+				<h2>Web Frameworks</h2>
+				<img src="https://s3.amazonaws.com/giphymedia/media/MOWPkhRAUbR7i/giphy.gif">
+			</section>
+
+			<section>
+				<h2>
+					<span id="greeting">Hello</span>
+					<span id="subject">world!</span>
+				</h2>
+				<select id="greetingInput" style="font-size: 48px;">
+					<option value="Hello">Hello</option>
+					<option value="So long">So long</option>
+				</select>
+				<input id="subjectInput" type="text" value="world!" style="font-size: 48px;">
+				<script type="text/javascript">
+					var g = document.getElementById('greetingInput');
+					var s = document.getElementById('subjectInput');
+
+					g.onchange = function() {
+						document.getElementById('greeting').innerHTML = this.value;
+					};
+
+					s.onkeypress = s.onkeyup = function() {
+						document.getElementById('subject').innerHTML = this.value;
+					};
+				</script>
+			</section>
+
+			<section>
+				<section data-markdown>
+					<script type="text/template">
+						## Pure JavaScript
+
+						`index.html`
+
+						```html
+						<h1>
+							<span id="greeting">Hello</span>
+							<span id="subject">world!</span>
+						</h1>
+						<select id="greetingInput">
+							<option value="Hello">Hello</option>
+							<option value="So long">So long</option>
+						</select>
+						<input id="subjectInput" type="text" value="world!">
+						```
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Pure JavaScript
+
+						`app.js`
+
+						```js
+						var g = document.getElementById('greetingInput');
+						var s = document.getElementById('subjectInput');
+
+						g.onchange = function() {
+							document.getElementById('greeting').innerHTML = this.value;
+						};
+
+						s.onkeypress = s.onkeyup = function() {
+							document.getElementById('subject').innerHTML = this.value;
+						};
+						```
+					</script>
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown>
+					<script type="text/template">
+						## Angular
+
+						`index.html`
+
+						```html
+						<body ng-app="App">
+							<div ng-controller="Example">
+								<h1>{{greeting}} {{subject}}</h1>
+								<select ng-model="greeting"
+								        ng-options="g for g in greetings">
+								</select>
+								<input type="text" ng-model="subject">
+							</div>
+						</body>
+						```
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Angular
+
+						`app.js`
+
+						```js
+						angular.module('App', [])
+						       .controller('Example', ['$scope', function($scope) {
+							$scope.greetings = ['Hello', 'So long'];
+							$scope.greeting = $scope.greetings[0];
+							$scope.subject = 'world!';
+						}]);
+						```
+					</script>
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown>
+					<script type="text/template">
+						## React
+
+						`app.js`
+
+						```js
+						var App = React.createClass({
+							getInitialState: function() {
+								return { greeting: 'Hello', subject: 'world!' };
+							},
+							render: function() {
+								return ( /* Partial here */ );
+							},
+							onGreetingChange: function(event) {
+								this.setState({ greeting: event.target.value });
+							},
+							onSubjectChange: function(event) {
+								this.setState({ subject: event.target.value });
+							}
+						});
+
+						React.renderComponent(<App/>, document.body);
+						```
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## React
+
+						Partial
+
+						```html
+						<div>
+							<h1>{this.state.greeting} {this.state.subject}</h1>
+							<select value={this.state.greeting}
+							        onChange={this.onGreetingChange}>
+								<option value="Hello">Hello</option>
+								<option value="So long">So long</option>
+							</select>
+							<input type="text" value={this.state.subject}
+							       onChange={this.onSubjectChange} />
+						</div>
+						```
+					</script>
+				</section>
+			</section>
+
+			<section data-markdown>
+				<script type="text/template">
+					![SDLC](img/sdlc.png)
+
+					> &ldquo;It is very helpful indeed if the framework guides developers through the entire journey of building an app.&rdquo;
+
+					&mdash; The Zen of Angular <!-- .element: style="text-align: right;" -->
+				</script>
+			</section>
+
+			<section data-markdown>
+				<script type="text/template">
+					![Magic](img/magic.png)
+
+					> &ldquo;We should do our utmost to shorten the conceptual gap between the static program and the dynamic process.&rdquo;
+
+					&mdash; Edsger Dijkstra <!-- .element: style="text-align: right;" -->
+				</script>
+			</section>
+
+			<section data-markdown>
+				<script type="text/template">
+					**Angular exists to aid the developer as much as possible in the *present*.**
+
+					**React is a preparation for the *future*.**
+				</script>
+			</section>
+
+			<section data-markdown>
+				<script type="text/template">
+					## Interview Time!
+
+					1. What is the best sorting algorithm? <!-- .element: class="fragment" -->
+
+					   ### It Depends <!-- .element: class="fragment" -->
+
+					2. Which is better, Angular or React? <!-- .element: class="fragment" -->
+
+					   ### **It Depends** <!-- .element: class="fragment" -->
+				</script>
+			</section>
+
+			<section data-markdown>
+				<script type="text/template">
+					![Hammering a Minion](http://share.gifyoutube.com/yDozzW.gif)
+
+					> &ldquo;If the only tool you have is a hammer, you tend to see every problem as a nail.&rdquo;
+
+					&mdash; Abraham Maslow <!-- .element: style="text-align: right;" -->
+				</script>
+			</section>
+
+			<section data-background="img/anyone-can-code.png">
+			</section>
+
+			<section id="bibliography" data-markdown>
+				<script type="text/template">
+					## The Boring Stuff
+
+					- Google. (2014) Guide to AngularJS Documentation. [Online]. Available: https://docs.angularjs.org/guide
+					- B. Green and M. Hevery, "Design Principles of AngularJS," presented at the Google I/O Developer Conference, 2013.
+					- P. Hunt. (2013, June) Why did we build React? [Online]. Available: http://facebook.github.io/react/blog/2013/06/05/why-react.html
+					- ——, “The Secrets of React’s Virtual DOM,” presented at the Barcelona FutureJS Conference, 2014.
+					- C. Schlensker and J. Lipper, "The Evolution of Frontend," presented at the Bloc Online Tech Talk, 2014.
+					- J. Sklar, *Principles of Web Design*, 5th ed. Boston, MA: Course Technology, 2012.
+				</script>
+			</section>
+
+			<section>
+				<h1>The End</h1>
+				<h3>Thank You!</h3>
+			</section>
+		</div>
+	</div>
+	<script src="js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+	<script>
+		var hasMarkdown = function() {
+			return !!document.querySelector('[data-markdown]');
+		};
+		Reveal.initialize({
+			history: true,
+			dependencies: [
+				{ src: 'js/classList.js', condition: function() { return !document.body.classList; }},
+				{ src: 'plugin/marked.js', condition: hasMarkdown },
+				{ src: 'plugin/markdown.js', condition: hasMarkdown },
+				{ src: 'plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); }},
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; }}
+			]
+		});
+	</script>
+</body>
+</html>
